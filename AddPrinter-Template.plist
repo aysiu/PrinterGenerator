@@ -61,9 +61,9 @@ proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 (lpadminOut, lpadminErr) = proc.communicate()
 
 if lpadminErr:
-    print "Error: %s" % lpadminErr
+    print(f"Error: {lpadminErr}") 
     sys.exit(1)
-print "Results: %s" % lpadminOut    
+print(f"Results: {lpadminOut}"     
 sys.exit(0)</string>
 	<key>unattended_install</key>
 	<true/>
