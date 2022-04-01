@@ -87,21 +87,21 @@ if args.csv:
             f.close()
 else:
     if not args.printername:
-        print >> sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --printername is required')
+        print(sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --printername is required'))
         parser.print_usage()
         sys.exit(1)
     if not args.driver:
-        print >> sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --driver is required')
+        print(sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --driver is required'))
         parser.print_usage()
         sys.exit(1)
     if not args.address:
-        print >> sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --address is required')
+        print(sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --address is required'))
         parser.print_usage()
         sys.exit(1)
     
     if re.search(r"[\s#/]", args.printername):
         # printernames can't contain spaces, tabs, # or /.  See lpadmin manpage for details.
-        print >> sys.stderr, ("ERROR: Printernames can't contain spaces, tabs, # or /.")
+        print(sys.stderr, ("ERROR: Printernames can't contain spaces, tabs, # or /."))
         sys.exit(1)
     
     if args.desc:
