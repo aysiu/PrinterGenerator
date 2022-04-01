@@ -7,9 +7,9 @@ See [Managing Printers with Munki](https://github.com/munki/munki/wiki/Managing-
 
 ## Usage
 
-The script can either take arguments on the command line, or a CSV file containing a list of printers with all the necessary information.  
+The script can either take arguments on the command line, or a CSV file containing a list of printers with all the necessary information.
 
-The script will generate a pkginfo file.  This pkginfo file is a "nopkg" style, and thus has three separate scripts:  
+The script will generate a pkginfo file.  This pkginfo file is a "nopkg" style, and thus has three separate scripts:
 
 * installcheck_script
 * postinstall_script
@@ -17,7 +17,7 @@ The script will generate a pkginfo file.  This pkginfo file is a "nopkg" style, 
 
 The installcheck_script looks for an existing print queue named PRINTERNAME.  If it does not find one, it will exit 0 and trigger an installation request.  If it does find one, it will compare all of the options provided (DRIVER, ADDRESS, DISPLAYNAME, LOCATION, and OPTIONS) for differences.  If there are any differences, it will trigger an installation request.
 
-The postinstall_script will attempt to delete the existing print queue named PRINTERNAME first, and then will reinstall the queue with the specified options.  
+The postinstall_script will attempt to delete the existing print queue named PRINTERNAME first, and then will reinstall the queue with the specified options.
 *Note that it does not check to see if the printer queue is in use at the time, so it is possible that existing print jobs will be cancelled if a user is printing when a Munki reinstall occurs.*
 
 The uninstall_script will delete the printer queue named PRINTERNAME if uninstallation is triggered.
@@ -97,8 +97,8 @@ As in the above CSV section, the arguments are all the same:
 
 ### Figuring out options:
 
-Printer options can be determined by using `lpoptions` on an existing printer queue:  
-`/usr/bin/lpoptions -p YourPrinterQueueName -l`  
+Printer options can be determined by using `lpoptions` on an existing printer queue:
+`/usr/bin/lpoptions -p YourPrinterQueueName -l`
 
 Here's a snip of output:
 
@@ -110,12 +110,12 @@ HPPaperSource/Source: *Tray1
 Resolution/Resolution: *300x300dpi 600x600dpi 1200x1200dpi
 ```
 
-Options typically have the actual PPD option name on the left side of the /, and a display name (which is likely to show up in the printer settings dialogue boxes) on the right of the /.  The possible values for the printer are listed after the colon.  The current option is marked with an "*".  
+Options typically have the actual PPD option name on the left side of the /, and a display name (which is likely to show up in the printer settings dialogue boxes) on the right of the /.  The possible values for the printer are listed after the colon.  The current option is marked with an "*".
 
-Despite `lpoptions` using a "Name/Nice Name: Value *Value Value" format, the option must be specified more strictly:  
+Despite `lpoptions` using a "Name/Nice Name: Value *Value Value" format, the option must be specified more strictly:
 "HPColorMode=grayscale"
 
-This is the format you must use when passing options to `--options`, or specifying them in the CSV file.  
+This is the format you must use when passing options to `--options`, or specifying them in the CSV file.
 
 *Note that `/usr/bin/lpoptions -l` without specifying a printer will list options for the default printer.*
 
@@ -172,7 +172,7 @@ proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 (lpoptOut, lpoptErr) = proc.communicate()
 
 #Note: lpoptions -p printername will never fail. If MyPrinterQueue does not exist, it 
-#will still exit 0, but just produce no output.  
+#will still exit 0, but just produce no output.
 #Thanks, cups, I was having a good day until now.
 
 for option in lpoptLongOut.splitlines():
@@ -188,10 +188,10 @@ for option in lpoptLongOut.splitlines():
                 print "Found mismatch: %s is '%s', should be '%s'" % (myOption, printerOptions[myOption], actualOptionValue)
                 sys.exit(0)
 
-optionDict = dict()                
+optionDict = dict()              
 for builtOption in shlex.split(lpoptOut):
     optionDict[builtOption.split("=")[0]] = builtOption.split("=")[1]
-    
+  
 comparisonDict = { "device-uri":"lpd://10.0.0.1", "printer-info":"My Printer Queue", "printer-location":"Tech Office", "printer-make-and-model":"HP officejet 5500 series.ppd" }
 for keyName in comparisonDict.keys():
     if not comparisonDict[keyName] == optionDict[keyName]:
@@ -238,7 +238,7 @@ proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 if lpadminErr:
     print "Error: %s" % lpadminErr
     sys.exit(1)
-print "Results: %s" % lpadminOut    
+print "Results: %s" % lpadminOut  
 sys.exit(0)</string>
 	<key>unattended_install</key>
 	<true/>
