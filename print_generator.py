@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/munki/munki-python
 import os
 from plistlib import readPlist, writePlist
 import csv
