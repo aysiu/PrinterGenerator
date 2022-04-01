@@ -9,13 +9,13 @@ See [Managing Printers with Munki](https://github.com/munki/munki/wiki/Managing-
 
 The script can either take arguments on the command line, or a CSV file containing a list of printers with all the necessary information.
 
-The script will generate a pkginfo file.  This pkginfo file is a "nopkg" style, and thus has three separate scripts:
+The script will generate a pkginfo file. This pkginfo file is a "nopkg" style, and thus has three separate scripts:
 
 * installcheck_script
 * postinstall_script
 * uninstall_script
 
-The installcheck_script looks for an existing print queue named PRINTERNAME.  If it does not find one, it will exit 0 and trigger an installation request.  If it does find one, it will compare all of the options provided (DRIVER, ADDRESS, DISPLAYNAME, LOCATION, and OPTIONS) for differences.  If there are any differences, it will trigger an installation request.
+The installcheck_script looks for an existing print queue named PRINTERNAME. If it does not find one, it will exit 0 and trigger an installation request. If it does find one, it will compare all of the options provided (DRIVER, ADDRESS, DISPLAYNAME, LOCATION, and OPTIONS) for differences. If there are any differences, it will trigger an installation request.
 
 The postinstall_script will attempt to delete the existing print queue named PRINTERNAME first, and then will reinstall the queue with the specified options.
 *Note that it does not check to see if the printer queue is in use at the time, so it is possible that existing print jobs will be cancelled if a user is printing when a Munki reinstall occurs.*
@@ -24,7 +24,7 @@ The uninstall_script will delete the printer queue named PRINTERNAME if uninstal
 
 ### Using a CSV file:
 
-A template CSV file is provided to make it easy to generate multiple pkginfos in one run.  Pass the path to the csv file with `--csv`:
+A template CSV file is provided to make it easy to generate multiple pkginfos in one run. Pass the path to the csv file with `--csv`:
 
 ```
 ./print_generator.py --csv /path/to/printers.csv
@@ -35,11 +35,11 @@ The CSV file's columns should be pretty self-explanatory:
 
 * Printer name: Name of the print queue
 * Location: The "location" of the printer
-* Display name: The visual name that shows up in the Printers & Scanners pane of the System Preferences, and in the print dialogue boxes.  Also used in the Munki pkginfo.
-* Address: The IP or DNS address of the printer. The template uses the form: `lpr://ADDRESS`.  Change to another protocol in the template if necessary.
+* Display name: The visual name that shows up in the Printers & Scanners pane of the System Preferences, and in the print dialogue boxes. Also used in the Munki pkginfo.
+* Address: The IP or DNS address of the printer. The template uses the form: `lpr://ADDRESS`. Change to another protocol in the template if necessary.
 * Driver: Name of the driver file in /Library/Printers/PPDs/Contents/Resources/.
 * Description: Used only in the Munki pkginfo. 
-* Options: Any printer options that should be specified. These **must** be space-delimited key=value pairs, such as "HPOptionDuplexer=True OutputMode=normal".  **Do not use commas to separate the options, because this is a comma-separated values file.**
+* Options: Any printer options that should be specified. These **must** be space-delimited key=value pairs, such as "HPOptionDuplexer=True OutputMode=normal". **Do not use commas to separate the options, because this is a comma-separated values file.**
 
 The CSV file is not sanity-checked for invalid entries or blank fields, so double check your file and test your pkginfos thoroughly.
 
@@ -88,9 +88,9 @@ As in the above CSV section, the arguments are all the same:
 
 * `--printername`: Name of the print queue. May not contain spaces, tabs, "#" or "/" characters. **Required.**
 * `--driver`: Name of the driver file in /Library/Printers/PPDs/Contents/Resources/. This can be either a relative path (i.e. the filename in the path above), or a full path (starting with "/Library"). **Required.**
-* `--address`: The IP or DNS address of the printer. If no protocol is specified, `lpd://ADDRESS` will be used.  **Required.**
+* `--address`: The IP or DNS address of the printer. If no protocol is specified, `lpd://ADDRESS` will be used. **Required.**
 * `--location`: The "location" of the printer. If not provided, this will default to the value of `--printername`.
-* `--displayname`: The visual name that shows up in the Printers & Scanners pane of the System Preferences, and in the print dialogue boxes.  Also used in the Munki pkginfo.  If not provided, this will default to the value of `--printername`.
+* `--displayname`: The visual name that shows up in the Printers & Scanners pane of the System Preferences, and in the print dialogue boxes. Also used in the Munki pkginfo. If not provided, this will default to the value of `--printername`.
 * `--desc`: Used only in the Munki pkginfo. If not provided, will default to an empty string ("").
 * `--options`: Any number of printer options that should be specified. These should be space-delimited key=value pairs, such as "HPOptionDuplexer=True OutputMode=normal". 
 * `--version`: The version number of the Munki pkginfo. Defaults to "1.0".
@@ -110,7 +110,7 @@ HPPaperSource/Source: *Tray1
 Resolution/Resolution: *300x300dpi 600x600dpi 1200x1200dpi
 ```
 
-Options typically have the actual PPD option name on the left side of the /, and a display name (which is likely to show up in the printer settings dialogue boxes) on the right of the /.  The possible values for the printer are listed after the colon.  The current option is marked with an "*".
+Options typically have the actual PPD option name on the left side of the /, and a display name (which is likely to show up in the printer settings dialogue boxes) on the right of the /. The possible values for the printer are listed after the colon. The current option is marked with an "*".
 
 Despite `lpoptions` using a "Name/Nice Name: Value *Value Value" format, the option must be specified more strictly:
 "HPColorMode=grayscale"
