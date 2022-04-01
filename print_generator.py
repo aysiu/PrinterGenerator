@@ -1,10 +1,11 @@
 #!/usr/local/munki/munki-python
+
+import argparse
+import csv
 import os
 import plistlib
-import csv
-import argparse
-import sys
 import re
+import sys
 
 def getOptionsString(optionList):
     # optionList should be a list item
