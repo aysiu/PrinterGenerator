@@ -28,7 +28,7 @@ args = parser.parse_args()
 
 
 f = open('AddPrinter-Template.plist', 'rb')
-templatePlist = readPlist(f)
+templatePlist = plistlib.load(f)
 f.close()
 
 if args.csv:
@@ -83,7 +83,7 @@ if args.csv:
             # Write out the file
             newFileName = "AddPrinter-" + row[0] + "-1.0.pkginfo"
             f = open(newFileName, 'wb')
-            writePlist(newPlist, f)
+            plistlib.dump(newPlist, f)
             f.close()
 else:
     if not args.printername:
@@ -168,5 +168,5 @@ else:
 
     newFileName = "AddPrinter-" + str(args.printername) + "-%s.pkginfo" % str(version)
     f = open(newFileName, 'wb')
-    writePlist(newPlist, f)
+    plistlib.dump(newPlist, f)
     f.close()
