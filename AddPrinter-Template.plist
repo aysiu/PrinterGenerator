@@ -35,7 +35,7 @@ fi</string>
 	<key>name</key>
 	<string>AddPrinter_DISPLAYNAME</string>
 	<key>postinstall_script</key>
-	<string>#!/usr/bin/python
+	<string>#!/usr/local/munki/munki-python
 import subprocess
 import sys
 
