@@ -1,7 +1,7 @@
 PrinterGenerator
 ================
 
-This script will generate a ["nopkg"](https://groups.google.com/d/msg/munki-dev/hmfPZ7sgW6k/q6vIkPIPepoJ) style pkginfo file for [Munki](https://github.com/munki/munki/wiki) to install a printer.
+This script will generate a ["nopkg"](https://github.com/munki/munki/wiki/nopkgs) style pkginfo file for [Munki](https://github.com/munki/munki/wiki) to install a printer.
 
 See [Managing Printers with Munki](https://github.com/munki/munki/wiki/Managing-Printers-With-Munki) for more details.
 
