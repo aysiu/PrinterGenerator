@@ -85,6 +85,7 @@ if args.csv:
             f = open(newFileName, 'wb')
             plistlib.dump(newPlist, f)
             f.close()
+            print(f'Created {newFileName}')
 else:
     if not args.printername:
         print(sys.stderr, (os.path.basename(sys.argv[0]) + ': error: argument --printername is required'))
@@ -170,3 +171,4 @@ else:
     f = open(newFileName, 'wb')
     plistlib.dump(newPlist, f)
     f.close()
+    print(f'Created {newFileName}')
